@@ -8,11 +8,12 @@
  * Study the code below for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * Ans: counter1 is a closure function and counter2 is a normal function
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * Ans: counter1 uses a closure, because counter1 has another function inside the outer function.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *Ans: counter1 code would be preferable if you want to access an outer function's scope from an inner function,
+       counter2 code would be better if you want to write a simple smooth functions that can achieve your objects/goals.
 */
 
 // counter1 code
@@ -46,14 +47,16 @@ function motivation(firstname, lastname) {
   var welcomeText = 'You\'re doing awesome, keep it up ';
 
   // code message function here.
-
+  function message(){
+    return `${welcomeText} ${firstname} ${lastname}.`
+  }
 
   //Uncommment this to return the value of your invoked message function
-  //return message();
+  return message();
 
 }
 
-motivation('Mohamed', 'Ali'); // 'You're doing awesome keep it up Mohamed Ali.
+console.log(motivation('Mohamed', 'Ali')); // 'You're doing awesome keep it up Mohamed Ali.
 
 
 /******************************************************************************\
@@ -71,11 +74,36 @@ var secondLevelFriends = ["Mahad", "Farah", "Mohamed"];
 var allUsers = ["Ahmed", "Khadijo", "Farah", "Mahad", "Mohamed", "Bashir", "Ali"];
 
 function findPotentialFriends(existingFriends) {
-
+  existingFriends.push(allUsers)
+  console.log(existingFriends)
+  let matches = []
+  function isNotAFriend(){
+    // if(friends === existingFriends)
+    //   return true
+    // else
+    //   return false
+    for(const a of friends)
+      for(const b of existingFriends)
+        if(friends[a] === existingFriends[b]){
+          matches.push(friends[b])
+          console.log(`friend exists`)
+          return true
+          
+        }
+        else{
+          console.log('friend not exist')
+          return false
+           
+        }
+    console.log(`Matches: ${matches}`)  
+      
+  }
+  return isNotAFriend()
 }
 
 var isNotAFriend = findPotentialFriends( friends );
-// isNotAFriend(allUsers[0]); // false
+console.log(isNotAFriend)
+isNotAFriend(allUsers[0]); // false
 // isNotAFriend(secondLevelFriends[2]); // true
 
 
