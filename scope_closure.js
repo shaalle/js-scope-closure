@@ -74,36 +74,23 @@ var secondLevelFriends = ["Mahad", "Farah", "Mohamed"];
 var allUsers = ["Ahmed", "Khadijo", "Farah", "Mahad", "Mohamed", "Bashir", "Ali"];
 
 function findPotentialFriends(existingFriends) {
-  existingFriends.push(allUsers)
-  console.log(existingFriends)
-  let matches = []
-  function isNotAFriend(){
-    // if(friends === existingFriends)
-    //   return true
-    // else
-    //   return false
-    for(const a of friends)
-      for(const b of existingFriends)
-        if(friends[a] === existingFriends[b]){
-          matches.push(friends[b])
-          console.log(`friend exists`)
-          return true
-          
-        }
-        else{
-          console.log('friend not exist')
+  return function(user){
+    user = existingFriends === friends ? friends : existingFriends === secondLevelFriends ? secondLevelFriends : allUsers
+    for(let friend in existingFriends){
+        if(friend === user){
+          console.log(`Saaxib waye ${friend}`)
           return false
-           
         }
-    console.log(`Matches: ${matches}`)  
-      
+    }
+    console.log(`Saaxib ma ahan ${user}`)
+    return true
   }
-  return isNotAFriend()
 }
 
+
 var isNotAFriend = findPotentialFriends( friends );
-console.log(isNotAFriend)
-isNotAFriend(allUsers[0]); // false
+console.log(isNotAFriend())
+// isNotAFriend(allUsers[0]); // false
 // isNotAFriend(secondLevelFriends[2]); // true
 
 
